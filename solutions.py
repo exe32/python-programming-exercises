@@ -2,6 +2,7 @@
 The list of exercises from: https://github.com/zhiwehu/Python-programming-exercises/blob/master/100%2B%20Python%20challenging%20programming%20exercises%20for%20Python%203.md
 """
 import doctest
+from math import sqrt
 
 
 def q1():
@@ -16,7 +17,7 @@ def q1():
 # q1()
 
 def q2(num):
-    """Question 2: Write a program which can compute the factorial of a given numbers. The results should be printed in a comma-separated sequence on a single line. Suppose the following input is supplied to the program: 8 Then, the output should be: 40320 
+    """Question 2: Write a program which can compute the factorial of a given numbers. The results should be printed in a comma-separated sequence on a single line. Suppose the following input is supplied to the program: 8 Then, the output should be: 40320
     >>> q2(8)
     40320
     """
@@ -52,7 +53,7 @@ def q5():
     """
     class myClass():
         def __init__(self):
-            self.string = "" 
+            self.string = ""
         def getString(self):
             self.string = input("enter string: ")
         def printString(self):
@@ -61,7 +62,7 @@ def q5():
     i = myClass()
     i.getString()
     i.printString()
-  
+
 # q5()
 
 def q6(input):
@@ -159,7 +160,7 @@ def q12():
                 break
         if evenity:
             result.append(str(i))
-    
+
     print(",".join(result))
 
 #q12()
@@ -288,6 +289,139 @@ def q20(data: int):
     list = [str(i) for i in c.generator(data)]
     print(",".join(list))
 
-q20(int(input("enter number [20]: ") or "20"))
+# q20(int(input("enter number [20]: ") or "20"))
+
+def q21():
+    """
+    Question A robot moves in a plane starting from the original point (0,0). The robot can move toward UP, DOWN, LEFT and RIGHT with a given steps. The trace of robot movement is shown as the following: UP 5 DOWN 3 LEFT 3 RIGHT 2 ¡­ The numbers after the direction are steps. Please write a program to compute the distance from current position after a sequence of movement and original point. If the distance is a float, then just print the nearest integer. Example: If the following tuples are given as input to the program: UP 5 DOWN 3 LEFT 3 RIGHT 2 Then, the output of the program should be: 2
+    """
+    import math
+    pos: list[int] = [0, 0]
+    while True:
+        data: str = input("enter the step in a format of <direction> <distance>: ")
+        if data:
+            direction, step = data.split()
+            if direction in "UP":
+                pos[0]=pos[0]+int(step)
+            if direction in "DOWN":
+                pos[0]=pos[0]-int(step)
+            if direction in "LEFT":
+                pos[1]=pos[1]-int(step)
+            if direction in "RIGHT":
+                pos[1]=pos[1]+int(step)
+            print("current position:", pos)
+        else:
+            distance = round(sqrt(pos[0]**2+pos[1]**2))
+            print("finished, distance from 0,0:", distance)
+            break
+
+# q21()
+
+
+def q22(data: str):
+    """
+    Write a program to compute the frequency of the words from the input. The output should output after sorting the key alphanumerically. Suppose the following input is supplied to the program: New to Python or choosing between Python 2 and Python 3? Read Python 2 or Python 3. Then, the output should be: 2:2 3.:1 3?:1 New:1 Python:5 Read:1 and:1 between:1 choosing:1 or:2 to:1
+    >>> q22("New to Python or choosing between Python 2 and Python 3? Read Python 2 or Python 3.")
+    2:2 3.:1 3?:1 New:1 Python:5 Read:1 and:1 between:1 choosing:1 or:2 to:1 
+    """
+    words = {}
+    for word in sorted(set(data.split())):
+        words[word] = data.split().count(word)
+        print(f'{word}:{words[word]}', end=" ")
+
+# q22(input("enter the sentence to calulate words frequency [New to Python or choosing between Python 2 and Python 3? Read Python 2 or Python 3.]") or "New to Python or choosing between Python 2 and Python 3? Read Python 2 or Python 3.")
+
+
+def q23(x: int):
+    """
+    Question: Write a method which can calculate square value of number
+    >>> q23(5)
+    25
+    """
+    return x**2
+
+# print(q23(int(input("enter a number to square [5]: ") or "5")))
+
+def q24():
+    """
+    Python has many built-in functions, and if you do not know how to use it, you can read document online or find some books. But Python has a built-in document function for every built-in functions.
+    Please write a program to print some Python built-in functions documents, such as abs(), int(), raw_input()
+    And add document for your own function Hints: The built-in document method is doc
+    """
+    print(abs.__doc__)
+    print(int.__doc__)
+    print(input.__doc__)
+    
+# q24()
+# print(q24.__doc__)
+
+def q25():
+    """
+    Question: Define a class, which have a class parameter and have a same instance parameter.
+    Hints: Define a instance parameter, need add it in init method You can init a object with construct parameter or set the value later
+    """
+    class MyClass():
+        classParameter = "elo"
+        def __init__(self, value):
+            self.instanceParameter = value
+    
+    myInstance = MyClass("siema")
+    print(myInstance.classParameter)
+    print(myInstance.instanceParameter)
+
+# q25()
+
+def q26(x: int, y:int) -> int:
+    """
+    Define a function which can compute the sum of two numbers.
+    Hints: Define a function with two numbers as arguments. You can compute the sum in the function and return the value.
+    >>> q26(2,7)
+    9
+    """
+    return x+y
+
+# print(q26(int(input("input number one [2]: ") or "2"),int(input("input number two [9]: ") or "9")))
+
+def q27(x: int):
+    """
+    Define a function that can convert a integer into a string and print it in console.
+    >>> q27(2)
+    2
+    """
+    print(str(x))
+
+# q27(int(input("enter a number [12321]: ") or "12321"))
+
+## question is a duplicate of 27
+def q28(x: int):
+    """
+    Define a function that can convert a integer into a string and print it in console.
+    >>> q28(213)
+    213
+    """
+    print(str(x))
+
+# q28(int(input("enter a number [1211321]: ") or "1211321"))
+
+def q29(x: str, y: str):
+    """
+    Define a function that can receive two integral numbers in string form and compute their sum and then print it in console
+    >>> q29("10","20")
+    30
+    """
+    print(int(x)+int(y))
+
+# q29(input("enter number one: "), input("enter number two: "))
+
+
+def q30(x: str, y: str):
+    """
+    Define a function that can accept two strings as input and concatenate them and then print it in console.
+    >>> q30("10","20")
+    1020
+    """
+    print(x+y)
+
+q30(input("enter string one: "), input("enter string two: "))
 
 doctest.testmod()
