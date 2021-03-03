@@ -1,8 +1,9 @@
 """
 The list of exercises from: https://github.com/zhiwehu/Python-programming-exercises/blob/master/100%2B%20Python%20challenging%20programming%20exercises%20for%20Python%203.md
 """
+from ast import fix_missing_locations
 import doctest
-from math import sqrt
+from math import e, sqrt
 
 
 def q1():
@@ -422,6 +423,399 @@ def q30(x: str, y: str):
     """
     print(x+y)
 
-q30(input("enter string one: "), input("enter string two: "))
+# q30(input("enter string one: "), input("enter string two: "))
+
+def q31(x: str, y: str):
+    """
+    Define a function that can accept two strings as input and print the string with maximum length in console. If two strings have the same length, then the function should print al l strings line by line.
+    >>> q31("raz","osiem")
+    osiem
+    """
+    if len(x)==len(y):
+        print(x)
+        print(y)
+    elif len(x)>len(y):
+        print(x)
+    else:
+        print(y)
+
+# q31(input("input first string: "),input("input second string: "))
+
+def q32(x: int):
+    """
+    Define a function that can accept an integer number as input and print the "It is an even number" if the number is even, otherwise print "It is an odd number".
+    >>> q32(5)
+    It is an odd number
+    >>> q32(4)
+    It is an even number
+    """
+    if x % 2 == 0:
+        print("It is an even number")
+    else:
+        print("It is an odd number")
+
+# q32(int(input("please enter number [5]: ") or "5"))
+
+def q33():
+    """
+    Define a function which can print a dictionary where the keys are numbers between 1 and 3 (both included) and the values are square of keys.
+    >>> q33()
+    {1: 1, 2: 4, 3: 9}
+    """
+    myDict = {}
+    for i in range(1,4):
+        myDict[i]=i**2
+    print(myDict)
+
+# q33()
+
+def q34():
+    """
+    Define a function which can print a dictionary where the keys are numbers between 1 and 20 (both included) and the values are square of keys.
+    >>> q34()
+    {1: 1, 2: 4, 3: 9, 4: 16, 5: 25, 6: 36, 7: 49, 8: 64, 9: 81, 10: 100, 11: 121, 12: 144, 13: 169, 14: 196, 15: 225, 16: 256, 17: 289, 18: 324, 19: 361, 20: 400}
+    """
+    myDict = {}
+    for i in range(1,21):
+        myDict[i]=i**2
+    print(myDict)
+
+# q34()
+
+def q35():
+    """
+    Define a function which can generate a dictionary where the keys are numbers between 1 and 20 (both included) and the values are square of keys. The function should just print the values only.
+    >>> q35()
+    1 4 9 16 25 36 49 64 81 100 121 144 169 196 225 256 289 324 361 400
+    """
+    myDict = {}
+    for i in range(1,21):
+        myDict[i]=i**2
+    print(" ".join([str(value) for key, value in myDict.items()]))
+
+# q35()
+
+def q36():
+    """
+    Define a function which can generate a dictionary where the keys are numbers between 1 and 20 (both included) and the values are square of keys. The function should just print the keys only.
+    >>> q36()
+    1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20
+    """
+    myDict = {}
+    for i in range(1,21):
+        myDict[i]=i**2
+    print(" ".join([str(key) for key, value in myDict.items()]))
+
+# q36()
+
+def q37():
+    """
+    Define a function which can generate and print a list where the values are square of numbers between 1 and 20 (both included).
+    >>> q37()
+    [1, 4, 9, 16, 25, 36, 49, 64, 81, 100, 121, 144, 169, 196, 225, 256, 289, 324, 361, 400]
+    """
+    list = [i**2 for i in range(1,21)]
+    print(list)
+
+# q37()
+
+def q38():
+    """
+    Define a function which can generate a list where the values are square of numbers between 1 and 20 (both included). Then the function needs to print the first 5 elements in the list.
+    >>> q38()
+    [1, 4, 9, 16, 25]
+    """
+    list = [i**2 for i in range(1,21)]
+    print(list[:5])
+
+# q38()
+
+def q39():
+    """
+    Define a function which can generate a list where the values are square of numbers between 1 and 20 (both included). Then the function needs to print the last 5 elements in the list.
+    >>> q39()
+    [256, 289, 324, 361, 400]
+    """
+    list = [i**2 for i in range(1,21)]
+    print(list[-5:])
+
+# q39()    
+
+def q40():
+    """
+    Define a function which can generate a list where the values are square of numbers between 1 and 20 (both included). Then the function needs to print all values except the first 5 elements in the list.
+    >>> q40()
+    [36, 49, 64, 81, 100, 121, 144, 169, 196, 225, 256, 289, 324, 361, 400]
+    """
+    list = [i**2 for i in range(1,21)]
+    print(list[5:])
+
+# q40()
+
+def q41():
+    """
+    Define a function which can generate and print a tuple where the value are square of numbers between 1 and 20 (both included).
+    >>> q41()
+    (1, 4, 9, 16, 25, 36, 49, 64, 81, 100, 121, 144, 169, 196, 225, 256, 289, 324, 361, 400)
+    """
+    tpl = tuple(i**2 for i in range(1,21))
+    print(tpl)
+
+# q41()
+
+def q42():
+    """
+    With a given tuple (1,2,3,4,5,6,7,8,9,10), write a program to print the first half values in one line and the last half values in one line.
+    >>> q42()
+    (1, 2, 3, 4, 5)
+    (6, 7, 8, 9, 10)
+    """
+    tpl = tuple((1,2,3,4,5,6,7,8,9,10))
+    print(tpl[:round(len(tpl)/2)])
+    print(tpl[round(len(tpl)/2):])
+
+# q42()
+
+def q43():
+    """
+    Write a program to generate and print another tuple whose values are even numbers in the given tuple (1,2,3,4,5,6,7,8,9,10).
+    >>> q43()
+    (2, 4, 6, 8, 10)
+    """
+    initTuple = tuple((1,2,3,4,5,6,7,8,9,10))
+    outTUple = tuple(i for i in initTuple if i % 2 == 0)
+    print(outTUple)
+
+# q43()
+
+def q44(x: str):
+    """
+    Write a program which accepts a string as input to print "Yes" if the string is "yes" or "YES" or "Yes", otherwise print "No".
+    >>> q44("yes")
+    yes
+    >>> q44("Yes")
+    yes
+    >>> q44("YES")
+    yes
+    >>> q44("No")
+    no
+    >>> q44("awgdb")
+    no
+    """
+    if x.lower() in "yes":
+        print("yes")
+    else:
+        print("no")
+
+# q44(input("yes or no?: "))
+
+def q45():
+    """
+    Write a program which can filter even numbers in a list by using filter function. The list is: [1,2,3,4,5,6,7,8,9,10].
+    >>> q45()
+    [2, 4, 6, 8, 10]
+    """
+    ## Ugly:
+    # def isEven(i):
+    #     if i%2==0:
+    #         return True
+    #     else:
+    #         return False
+
+    # list = [1,2,3,4,5,6,7,8,9,10]
+    # newList = [j for j in filter(isEven, list)]
+    # print(newList)
+
+    ## Pretty:
+    list = [1,2,3,4,5,6,7,8,9,10]
+    newList = [j for j in filter(lambda i: i%2==0, list)]
+    print(newList)
+
+# q45()
+
+def q46():
+    """
+    Write a program which can map() to make a list whose elements are square of elements in [1,2,3,4,5,6,7,8,9,10].
+    >>> q46()
+    [1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
+    """
+    list = [1,2,3,4,5,6,7,8,9,10]
+    newList = [el for el in map(lambda i: i**2, list)]
+    print(newList)
+
+# q46()
+
+def q47():
+    """
+    Write a program which can map() and filter() to make a list whose elements are square of even number in [1,2,3,4,5,6,7,8,9,10].
+    >>> q47()
+    [4, 16, 36, 64, 100]
+    """
+    list = [1,2,3,4,5,6,7,8,9,10]
+    newList = [j for j in map(lambda i: i**2, filter(lambda i: i%2==0, list))]
+    print(newList)
+
+# q47()
+
+def q48():
+    """
+    Write a program which can filter() to make a list whose elements are even number between 1 and 20 (both included).
+    >>> q48()
+    [2, 4, 6, 8, 10, 12, 14, 16, 18, 20]
+    """
+    newList = [j for j in filter(lambda i: i%2==0, range(1,21))]
+    print(newList)
+
+# q48()
+
+def q49():
+    """
+    Write a program which can map() to make a list whose elements are square of numbers between 1 and 20 (both included).
+    >>> q49()
+    [1, 4, 9, 16, 25, 36, 49, 64, 81, 100, 121, 144, 169, 196, 225, 256, 289, 324, 361, 400]
+    """
+    newList = [el for el in map(lambda i: i**2, range(1,21))]
+    print(newList)
+
+# q49()
+
+def q50():
+    """
+    Define a class named American which has a static method called printNationality.
+    >>> q50()
+    american
+    """
+    class American():
+
+        @staticmethod
+        def printNationality():
+            print("american")
+
+    American.printNationality()
+
+# q50()
+
+def q51():
+    """
+    Define a class named American and its subclass NewYorker.
+    >>> q51()
+    american
+    NY
+    """
+    class American():
+        @staticmethod
+        def printNationality():
+            print("american")
+    
+    class NewYorker(American):
+        @staticmethod
+        def printCity():
+            print("NY")
+
+    NewYorker.printNationality()
+    NewYorker.printCity()
+    
+# q51()
+
+def q52():
+    """
+    Define a class named Circle which can be constructed by a radius. The Circle class has a method which can compute the area.
+    >>> q52()
+    314.16
+    """
+    class Circle():
+        def __init__(self, radius: float):
+            self.radius = radius
+        
+        def calcArea(self):
+            import math
+            return math.pi*(self.radius**2)
+
+    myCircle = Circle(10)
+    print(f'{myCircle.calcArea():.2f}')
+
+# q52()
+
+def q53():
+    """
+    Define a class named Rectangle which can be constructed by a length and width. The Rectangle class has a method which can compute the area.
+    >>> q53()
+    125.0
+    """
+    class Rectangle():
+        def __init__(self, length: float, width: float):
+            self.length = length
+            self.width = width 
+        def computeArea(self):
+            return self.length*self.width
+        
+    myRectangle = Rectangle(10, 12.5)
+    print(myRectangle.computeArea())
+
+# q53()
+
+def q54():
+    """
+    Define a class named Shape and its subclass Square. The Square class has an init function which takes a length as argument. Both classes have a area function which can print the area of the shape where Shape's area is 0 by default.
+    >>> q54()
+    16
+    """
+    class Shape():
+        def area(self):
+            return 0
+    
+    class Square(Shape):
+        def __init__(self, length: float):
+            self.length = length
+        def area(self):
+            return self.length**2
+
+    mySquare = Square(4)
+    print(mySquare.area())
+
+# q54()
+
+def q55():
+    """
+    Please raise a RuntimeError exception.
+    >>> q55()
+    Traceback (most recent call last):
+    ...
+    RuntimeError
+    """
+    raise RuntimeError
+
+# q55()
+
+def q56():
+    """
+    Write a function to compute 5/0 and use try/except to catch the exceptions.
+    >>> q56()
+    nie dziel przez zero kolego
+    """
+    try:
+        5/0
+    except ZeroDivisionError:
+        print("nie dziel przez zero kolego")
+    
+# q56()
+
+def q57():
+    """
+    Define a custom exception class which takes a string message as attribute.
+    """ 
+
+    class MyException(Exception):
+        """
+        Class with raises MyExpection.
+        Attributes:
+        - msg
+        """
+        def __init__(self, msg = None):
+            self.message = msg
+
+    raise MyException("coś poszło nie tak")
+
+q57()
 
 doctest.testmod()
