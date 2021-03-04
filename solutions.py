@@ -4,6 +4,7 @@ The list of exercises from: https://github.com/zhiwehu/Python-programming-exerci
 from ast import fix_missing_locations
 import doctest
 from math import e, sqrt
+from re import UNICODE
 
 
 def q1():
@@ -816,6 +817,262 @@ def q57():
 
     raise MyException("coś poszło nie tak")
 
-q57()
+# q57()
+
+def q58(data: str):
+    """
+    Assuming that we have some email addresses in the "username@companyname.com" format, please write program to print the user name of a given email address. Both user names and company names are composed of letters only.
+    Example: If the following email address is given as input to the program:
+    john@google.com
+    Then, the output of the program should be:
+    john
+    In case of input data being supplied to the question, it should be assumed to be a console input.
+    >>> q58("john@google.com")
+    john
+    """
+    name=data.split("@")[0]
+    print(name)
+
+# q58(input("enter email address [john@google.com]: ") or "john@google.com")
+
+
+def q59(data: str):
+    """
+    Assuming that we have some email addresses in the "username@companyname.com" format, please write program to print the company name of a given email address. Both user names and company names are composed of letters only.
+    Example: If the following email address is given as input to the program:
+    john@google.com
+    Then, the output of the program should be:
+    google
+    In case of input data being supplied to the question, it should be assumed to be a console input.
+    >>> q59("john@google.com")
+    google
+    """
+    import re
+    if re.match(r"(\w+)@(\w+)\.(\w+)", data):
+        print(data.split("@")[1].split(".")[0])
+
+# q59(input("enter email address [john@google.com]: ") or "john@google.com")
+
+def q60(data: str):
+    """
+    Write a program which accepts a sequence of words separated by whitespace as input to print the words composed of digits only.
+    Example: If the following words is given as input to the program:
+    2 cats and 3 dogs.
+    Then, the output of the program should be:
+    ['2', '3']
+    In case of input data being supplied to the question, it should be assumed to be a console input.
+    >>> q60("2 cats and 3 dogs")
+    ['2', '3']
+    """
+    ## simple
+    # print([i for i in data.split() if i.isdigit()])
+
+    ## regex
+    import re
+    print(re.findall(r"\d+", data))
+
+# q60(input("enter sentence [2 cats and 3 dogs]: ") or "2 cats and 3 dogs")
+
+def q61():
+    """
+    Print a unicode string "hello world".
+    >>> q61()
+    hello world
+    """
+    print(u'hello world')
+
+# q61()
+
+def q62():
+    """
+    Write a program to read an ASCII string and to convert it to a unicode string encoded by utf-8.
+    """
+    data = input("enter some data: ")
+    print(data)
+    ## everything is unicode in python3
+
+# q62()
+
+def q63():
+    # -*- coding: ascii -*-
+    """
+    Write a special comment to indicate a Python source code file is in unicode.
+    """
+
+def q64(x: int):
+    """
+    Write a program to compute 1/2+2/3+3/4+...+n/n+1 with a given n input by console (n>0).
+    Example: If the following n is given as input to the program:
+    5
+    Then, the output of the program should be:
+    3.55
+    In case of input data being supplied to the question, it should be assumed to be a console input.
+    >>> q64(5)
+    3.55
+    """
+    if x <= 0:
+        print("n should be more than 0")
+    else:
+        acc = 0.0
+        for i in range(1,x+1):
+            acc += i/(i+1)
+        print(f'{acc:.2f}')
+
+# q64(int(input("enter a number [5]: ") or "5"))
+
+def q65(x: int):
+    """
+    Write a program to compute:
+    f(n)=f(n-1)+100 when n>0 and f(0)=1
+    with a given n input by console (n>0).
+    Example: If the following n is given as input to the program:
+    5
+    Then, the output of the program should be:
+    500
+    In case of input data being supplied to the question, it should be assumed to be a console input.
+    >>> q65(5)
+    500
+    """
+    def f(n):
+        if n == 0:
+            return 0
+        else:
+            return f(n-1)+100
+
+    print(f(x))
+    
+
+# q65(int(input("enter a number [5]: ") or "5"))
+
+def q66(x: int):
+    """
+    The Fibonacci Sequence is computed based on the following formula:
+    f(n)=0 if n=0 f(n)=1 if n=1 f(n)=f(n-1)+f(n-2) if n>1
+    Please write a program to compute the value of f(n) with a given n input by console.
+    Example: If the following n is given as input to the program:
+    7
+    Then, the output of the program should be:
+    13
+    In case of input data being supplied to the question, it should be assumed to be a console input.
+    >>> q66(7)
+    13
+    """
+    a, b = 0, 1
+    for i in range(2,x+1):
+        a, b = b, a+b
+    print(b)
+
+# q66(int(input("enter a number [7]: ") or "7"))
+
+
+def q67(x: int):
+    """
+    The Fibonacci Sequence is computed based on the following formula:
+    f(n)=0 if n=0 f(n)=1 if n=1 f(n)=f(n-1)+f(n-2) if n>1
+    Please write a program using list comprehension to print the Fibonacci Sequence in comma separated form with a given n input by console.
+    Example: If the following n is given as input to the program:
+    7
+    Then, the output of the program should be:
+    0,1,1,2,3,5,8,13
+    >>> q67(7)
+    0,1,1,2,3,5,8,13
+    """
+    def fib(n):
+        if n == 0:
+            return 0
+        if n == 1:
+            return 1
+        else:
+            return fib(n-1)+fib(n-2)
+    
+    fibList = [str(fib(i)) for i in range(x+1)]
+    print(",".join(fibList))
+
+# q67(int(input("enter a number [7]: ") or "7"))
+
+def q68(x: int):
+    """
+    Please write a program using generator to print the even numbers between 0 and n in comma separated form while n is input by console.
+    Example: If the following n is given as input to the program:
+    10
+    Then, the output of the program should be:
+    0,2,4,6,8,10
+    >>> q68(10)
+    0,2,4,6,8,10
+    """
+    def getEven(n):
+        for i in range(0,n+1):
+            if i % 2 ==0:
+                yield i
+    list = [str(i) for i in getEven(x)]
+    print(",".join(list))
+
+# q68(int(input("enter a number [10]: ") or "10"))
+
+def q69(x: int):
+    """
+    Please write a program using generator to print the numbers which can be divisible by 5 and 7 between 0 and n in comma separated form while n is input by console.
+    Example: If the following n is given as input to the program:
+    100
+    Then, the output of the program should be:
+    0,35,70
+    >>> q69(100)
+    0,35,70
+    """
+    def getNums(n):
+        for i in range(0,n+1):
+            if i % 5 == 0 and i % 7 == 0:
+                yield i
+    list = [str(i) for i in getNums(x)]
+    print(",".join(list))
+
+# q69(int(input("enter a number [100]: ") or "100"))
+
+def q70():
+    """
+    Please write assert statements to verify that every number in the list [2,4,6,8] is even.
+    """
+    for i in [2,4,6,8]:
+        assert i % 2 == 0
+# q70()
+
+def q71(expr: str):
+    """
+    Please write a program which accepts basic mathematic expression from console and print the evaluation result.
+    Example: If the following string is given as input to the program:
+    35+3
+    Then, the output of the program should be:
+    38
+    >>> q71("35+3")
+    38
+    """
+    print(eval(expr))
+
+# q71((input("enter an expression [35+3]: ") or "35+3"))
+
+def q72(x: int):
+    """
+    Please write a binary search function which searches an item in a sorted list. The function should return the index of element to be searched in the list.
+    """
+    list = [0, 2, 3, 5, 6, 8, 11, 12, 14, 15, 16, 18, 19, 20, 21, 23, 24, 25, 26, 28, 30, 35, 36, 37, 40, 41, 42, 43, 44, 47, 49, 51, 52, 53, 54, 57, 58, 60, 63, 65, 66, 67, 69, 70, 71, 72, 73, 77, 79, 80, 82, 84, 85, 86, 87, 88, 90, 91, 92, 93, 94, 95, 96, 97, 98]
+
+    left=0
+    right=len(list)-1
+    while True:
+        index=round((left+right)/2)
+        # print(f'interation {i}: lower_pos {lower_pos} upper_pos: {upper_pos} current_pos: {current_pos}')
+        if list[index] == x:
+            print(f"element {x} found at {index}")
+            return index
+        elif x > list[index]:
+            left=index
+        elif x < list[index]:
+            right=index
+        elif left==index or right==index:
+            print("no element found")
+            break
+
+
+q72(int(input("enter a number [37]: ") or "37"))
 
 doctest.testmod()
