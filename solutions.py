@@ -4,6 +4,7 @@ The list of exercises from: https://github.com/zhiwehu/Python-programming-exerci
 from ast import fix_missing_locations
 import doctest
 from math import e, sqrt
+from random import shuffle
 from re import UNICODE
 
 
@@ -1072,7 +1073,171 @@ def q72(x: int):
             print("no element found")
             break
 
+# q72(int(input("enter a number [37]: ") or "37"))
 
-q72(int(input("enter a number [37]: ") or "37"))
+def q73():
+    """Please write a binary search function which searches an item in a sorted list. The function should return the index of element to be searched in the list.
+    """
+    list = [0, 2, 3, 5, 6, 8, 11, 12, 14, 15, 16, 18, 19, 20, 21, 23, 24, 25, 26, 28, 30, 35, 36, 37, 40, 41, 42, 43, 44, 47, 49, 51, 52, 53, 54, 57, 58, 60, 63, 65, 66, 67, 69, 70, 71, 72, 73, 77, 79, 80, 82, 84, 85, 86, 87, 88, 90, 91, 92, 93, 94, 95, 96, 97, 98]
+
+    left=0
+    right=len(list)-1
+    while True:
+        index=round((left+right)/2)
+        # print(f'interation {i}: lower_pos {lower_pos} upper_pos: {upper_pos} current_pos: {current_pos}')
+        if list[index] == x:
+            print(f"element {x} found at {index}")
+            return index
+        elif x > list[index]:
+            left=index
+        elif x < list[index]:
+            right=index
+        elif left==index or right==index:
+            print("no element found")
+            break
+
+# q73(int(input("enter a number [37]: ") or "37"))
+
+def q74():
+    """Please generate a random float where the value is between 10 and 100 using Python math module."""
+    import random
+    print(10 + random.random()*90)
+
+# q74()
+
+def q75():
+    """Please generate a random float where the value is between 5 and 95 using Python math module."""
+    import random
+    print(5 + random.random()*90)
+
+# q75()
+
+def q76():
+    """Please write a program to output a random even number between 0 and 10 inclusive using random module and list comprehension."""
+    import random
+    print(random.choice([i for i in range(0,11) if i % 2 == 0]))
+
+# q76()
+
+def q77():
+    """Please write a program to output a random number, which is divisible by 5 and 7, between 0 and 10 inclusive using random module and list comprehension."""
+    import random 
+    print(random.choice([i for i in range(0,11) if i%5==0 and i%7==0]))
+
+# q77()
+
+def q78():
+    """Please write a program to generate a list with 5 random numbers between 100 and 200 inclusive."""
+    import random
+    list = random.sample(range(100,201),5)
+    print(list)
+
+# q78()
+
+def q79():
+    """Please write a program to randomly generate a list with 5 even numbers between 100 and 200 inclusive."""
+    import random
+    print(random.sample(range(0,202,2),5))
+
+# q79()
+
+def q80():
+    """Please write a program to randomly generate a list with 5 numbers, which are divisible by 5 and 7 , between 1 and 1000 inclusive."""
+    import random
+    print(random.sample([i for i in range(1,1001) if i%5==0 and i%7==0],5))
+    
+# q80()
+
+def q81():
+    """Please write a program to randomly print a integer number between 7 and 15 inclusive."""
+    import random
+    print(random.randint(7,15))
+
+# q81()
+
+
+def q82():
+    """ Please write a program to compress and decompress the string "hello world!hello world!hello world!hello world!". """
+    import zlib
+    myString = "hello world!hello world!hello world!hello world!"
+    compressedData = zlib.compress(bytes(myString, 'utf-8'))
+    print(compressedData)
+    myDecompressedString = bytes.decode(zlib.decompress(compressedData),'utf-8')
+    print(myDecompressedString)
+
+# q82()
+
+def q83():
+    """Please write a program to print the running time of execution of "1+1" for 100 times. """ 
+    from timeit import Timer
+    print(Timer(stmt='1+1').timeit(number=100))
+
+#q83()
+
+def q84():
+    """Please write a program to shuffle and print the list [3,6,7,8]."""
+    import random
+    list = [3,6,7,8]
+    random.shuffle(list)
+    print(list)
+
+# q84()
+
+def q85():
+    """Please write a program to shuffle and print the list [3,6,7,8]."""
+    import random
+    list = [3,6,7,8]
+    random.shuffle(list)
+    print(list)
+
+# q85()
+
+def q86():
+    """ Please write a program to generate all sentences where subject is in ["I", "You"] and verb is in ["Play", "Love"] and the object is in ["Hockey","Football"]. """ 
+    subject = ["I", "You"]
+    verb = ["Play", "Love"]
+    object = ["Hockey","Football"]
+
+    for s in subject:
+        for v in verb:
+            for o in object:
+                print(s, v, o) 
+
+# q86()
+
+def q87():
+    """ Please write a program to print the list after removing delete even numbers in [5,6,77,45,22,12,24]. """ 
+    l = [5,6,77,45,22,12,24]
+    print(list(filter(lambda x: x%2==1, l)))
+
+# q87()
+
+def q88():
+    """ By using list comprehension, please write a program to print the list after removing delete numbers which are divisible by 5 and 7 in [12,24,35,70,88,120,155]. """
+    l = [12,24,35,70,88,120,155]
+    l = [i for i in l if i % 5 != 0 and i % 7 != 0]
+    print(l)
+
+# q88()
+
+def q89():
+    """By using list comprehension, please write a program to print the list after removing the 0th, 2nd, 4th,6th numbers in [12,24,35,70,88,120,155].""" 
+    l = [12,24,35,70,88,120,155]
+    l = [v for i, v in enumerate(l) if i % 2 != 0]
+    print(l)
+
+# q89() 
+
+def q90():
+    """By using list comprehension, please write a program generate a 358 3D array whose each element is 0."""
+    from pprint import pprint as print
+    ## Simple way
+    a = [[[0] * 8] * 5] * 3
+    print(a)
+    ## Comprehension way 
+    a = [[[0 for i in range(8)] for j in range(5)] for k in range(3)]
+    print(a)
+
+q90()
 
 doctest.testmod()
