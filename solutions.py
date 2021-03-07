@@ -1292,7 +1292,83 @@ def q95():
     
     Female.getGender()
 
-q95()
+# q95()
 
+def q96(data: str):
+    """Please write a program which count and print the numbers of each character in a string input by console.
+    Example: If the following string is given as input to the program:
+    abcdefgabc
+    Then, the output of the program should be:
+    a,2 c,2 b,2 e,1 d,1 g,1 f,1
+    >>> q96("abcdefgabc")
+    a,2 b,2 c,2 d,1 e,1 f,1 g,1
+    """
+    myDict = {}
+    for i in sorted(set(data)):
+        myDict[i]=data.count(i)
+    print(" ".join([f'{k},{v}' for k, v in myDict.items()]))
+
+
+
+# q96(input("enter string [abcdefgabc]: ") or "abcdefgabc")
+
+def q97(data: str):
+    """Please write a program which accepts a string from console and print it in reverse order.
+    Example: If the following string is given as input to the program:
+    rise to vote sir
+    Then, the output of the program should be:
+    ris etov ot esir
+    >>> q97("rise to vote sir")
+    ris etov ot esir
+    """
+    l = []
+    for i in reversed(data.split()):
+        reversedString = ""
+        for s in reversed(i):
+            reversedString += s
+        l.append(reversedString)
+    print(" ".join(l))
+
+# q97(input("enter string [rise to vote sir]: ") or "rise to vote sir")
+
+def q98(data: str):
+    """ Please write a program which accepts a string from console and print the characters that have even indexes.
+    Example: If the following string is given as input to the program:
+    H1e2l3l4o5w6o7r8l9d
+    Then, the output of the program should be:
+    Helloworld
+    >>> q98("H1e2l3l4o5w6o7r8l9d")
+    Helloworld
+    """
+    print("".join([v for i, v in enumerate(data) if i%2==0]))
+    
+
+
+# q98(input("enter string [H1e2l3l4o5w6o7r8l9d]: ") or "H1e2l3l4o5w6o7r8l9d")
+
+def q99():
+    """ Please write a program which prints all permutations of [1,2,3] """
+    ## With external module
+    import itertools
+    l = [1,2,3]
+    print(list([i for i in itertools.permutations(l)]))
+
+# q99()
+
+def q100():
+    """Write a program to solve a classic ancient Chinese puzzle: We count 35 heads and 94 legs among the chickens and rabbits in a farm. How many rabbits and how many chickens do we have?"""
+    heads = 35
+    legs = 94
+
+    ## loop way 
+    for i in range(1,36):
+        chickens = i
+        rabbits = 36 - chickens
+        legs = chickens*2 + rabbits*4
+        if legs==94:
+            print(f'above counts is possible if there is {chickens} chickens and {rabbits} rabbits')
+            # break
+
+# q100()
 
 doctest.testmod()
